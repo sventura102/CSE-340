@@ -236,3 +236,4 @@ VALUES   (
     'White',
     5
   );
+

@@ -3,6 +3,11 @@ html {
   background-image: url(../images/site/checkerboard.jpg);
 }
 
+/* Header */
+#top-header {
+  display: grid;
+  grid-template-columns: 2fr;
+}
 
 
 /******* Large View **************/

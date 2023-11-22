@@ -17,7 +17,7 @@ const static = require("./routes/static")
 const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
-const bodyPaser = require("body-parser")
+const bodyParser = require("body-parser")
 
 /* ***********************
  * Middleware

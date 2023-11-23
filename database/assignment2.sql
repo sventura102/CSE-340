@@ -8,6 +8,6 @@ DELETE FROM account WHERE account_id = 1;
 -- Update GM Hummer Description
 UPDATE inventory SET inv_description = 'Do you have 6 kids and like to go offroading? The Hummer gives you a large interior with an engine to get you out of any muddy or rocky situation.'WHERE inv_make = 'GM';
 -- Inner Join classification to inventory
-SELECT inv_make, inv_model FROM inventory JOIN classification ON inv_make = inv_model
+SELECT inv_make, inv_model FROM inventory JOIN classification c ON inv_id = c.classification_id;
 -- Replace images to images/vehicles
 SELECT REPLACE(inv_thumbnail AND inv_image, '/images', 'images/vehicles') FROM inventory;

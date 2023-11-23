@@ -12,7 +12,7 @@ router.get("/registration", utilities.handleErrors(accountController.buildRegist
 
 router.post('/registration',
     regValidate.registationRules(),
-    regValidate.checkRegData(),
+    regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
 )
 

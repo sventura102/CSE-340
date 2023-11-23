@@ -1,13 +1,39 @@
 /******* Mobile Vew ***************/
-html {
-  background-image: url(../images/site/checkerboard.jpg);
-}
-
-/* Header */
-#top-header {
-  display: grid;
-  grid-template-columns: 2fr;
+@media (max-width: 600px) {
+  html {
+    background-image: url(../images/site/small_check.png);
+    background-size: 150px;
+  }
+  div#wrapper {
+    background: white;
+  }
+  /* Header */
+  header#top-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  span.siteName {
+    grid-column: 1;
+  }
+  div#tools {
+    grid-column: 2;
+    text-align: right;
+  }
+  nav ul{
+    list-style: none;
+    display: flex;
+    background-color:#221c54;
+    height: 50px;
+  }
+  nav ul li{
+    text-decoration: none;
+    color: white;
+    
+  }
 }
 
 
 /******* Large View **************/
+@media (min-width: 600px) {
+
+}

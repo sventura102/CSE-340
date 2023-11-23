@@ -130,7 +130,7 @@ div#flux a , div#decals a, div#stickers a, div#caps a{
 	border-bottom: 0.2em solid #ccc;
 }
 
-section#upgrades {
+div#upgrade-boxes {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2em;
@@ -150,7 +150,8 @@ section#upgrades {
   }
   article {
     display: flex;
-    grid-template-columns: max-content 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
   }
   
 }

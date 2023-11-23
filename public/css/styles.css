@@ -136,8 +136,12 @@ div#upgrade-boxes {
   grid-gap: 2em;
 }
 
+/*******Login Form**************/
+
+/*******Registration Form********/
+
 /******* Large View **************/
-@media (min-width: 600px ) and (max-width: 975px) {
+@media (min-width: 600px ){
   html {
     background-image: url(../images/site/checkerboard.jpg);
   }
@@ -153,5 +157,4 @@ div#upgrade-boxes {
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
   }
-  
 }

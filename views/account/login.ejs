@@ -4,16 +4,15 @@
   <form id="login">
     <div class="login">
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="text" placeholder="Enter Email" name="account_email" required>
     
       <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
             
       <button type="login">LOGIN</button> 
       <div class="signup">
         <p>No account? <a href="/account/registration">Sign Up</a></p>
+      </div>
     </div>
-    </div>
-   
   </form>
 </div>

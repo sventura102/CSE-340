@@ -1,19 +1,28 @@
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 <h2>Registration Form</h2>
 <div class="register-container">
-    <form id ="register">
-        <label for="account_firstname">First Name:</label>
-        <input type="text" name="account_firstname">
+    <form id ="register" action="action/register" method="post">
+        <label for="accountfirstname">First Name:</label>
+        <input type="text" name="account_firstname" id="accountfirstname" required>
 
-        <label for="account_lastname">Last Name:</label>
-        <input type="text" name="account_lastname">
+        <label for="accountlastname">Last Name:</label>
+        <input type="text" name="account_lastname" id="accountlastname">
 
-        <label for="account_email">Email:</label>
-        <input type="text" name="account_email">
+        <label for="accountemail">Email:</label>
+        <input type="text" name="account_email" id="accountemail" required placeholder="Enter a valid email address">
 
-        <label for="account_password">Password:</label>
-        <input type="text" name="account_password">
-
+        <label for="accountPassword">Password:</label> 
+        <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        <span>***Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+        
         <button type="register">Register</button>
     </form>
 </div>
+
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>

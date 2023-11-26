@@ -4,13 +4,13 @@
 <div class="register-container">
     <form id ="register" action="registration" method="post">
         <label for="accountfirstname">First Name:</label>
-        <input type="text" name="account_firstname" id="account_firstname" required>
+        <input type="text" name="account_firstname" id="account_firstname" required value="<%= locals.account_firstname %>">>
 
-        <label for="accountlastname">Last Name:</label>
-        <input type="text" name="account_lastname" id="account_lastname">
+        <label for="accountlastname">Last Name:</label >
+        <input type="text" name="account_lastname" id="account_lastname" required value="<%= locals.account_lastname %>">>
 
         <label for="accountemail">Email:</label>
-        <input type="text" name="account_email" id="account_email" required placeholder="Enter a valid email address">
+        <input type="text" name="account_email" id="account_email" required value="<%= locals.account_email %>">
 
         <label for="accountPassword">Password:</label> 
         <input type="password" name="account_password" id="account_Password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">

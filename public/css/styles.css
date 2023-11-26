@@ -136,8 +136,89 @@ div#upgrade-boxes {
   grid-gap: 2em;
 }
 
+/*******Login Form**************/
+div.login-container {
+  padding: 50px;
+  height: 100%;
+}
+
+span {
+  color: white;
+  font-size: small;
+  text-align: center;
+}
+
+div.login {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  background-color:#221c54;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: grey;
+  padding: 40px;
+}
+
+label {
+  font-weight: lighter;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+button {
+  padding: 10px;
+  margin: 10px;
+  background-color: #fff;
+  color: black;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+div.signup {
+  color: white;
+  width:350px;
+  text-align: center;
+}
+
+div.signup a {
+  color: aqua;
+}
+
+/*******Registration Form********/
+div.register-container {
+  padding: 50px;
+  height: 100%;
+}
+
+form#register {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  background-color:#221c54;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: grey;
+  padding: 40px;
+}
+
+form#register button {
+  padding: 10px;
+  margin: 10px;
+  background-color: #fff;
+  color: black;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+
+
 /******* Large View **************/
-@media (min-width: 600px ) and (max-width: 975px) {
+@media (min-width: 600px ){
   html {
     background-image: url(../images/site/checkerboard.jpg);
   }
@@ -153,5 +234,21 @@ div#upgrade-boxes {
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
   }
-  
+  /****Login***/
+  div.login-container {
+    width: 600px;
+  }
+
+  div.login {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /***Register***/
+  div.register-container {
+    width: 600px;
+  }
+  form#register {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }

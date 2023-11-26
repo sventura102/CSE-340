@@ -145,12 +145,27 @@ div#upgrade-boxes {
 }
 /*******Inventory **************/
 ul#inv-display {
+  display: grid;
+  grid-template-columns: 1fr;
   background-color: gray;
   border-style: solid;
   border-radius: 20px;
 }
+ul#inv-display li {
+  list-style: none;
+  border-style: solid;
+  border-color: white;
+  text-align: right;
+}
 
+ul#inv-display li a{
+  text-decoration: none;
+}
 
+ul#inv-display li h2 a{
+  text-decoration: none;
+  color: white;
+}
 /*******Login Form**************/
 div.login-container {
   padding: 50px;
@@ -265,5 +280,13 @@ form#register button {
   form#register {
     margin-left: 100px;
     margin-right: 100px;
+  }
+  /*** Vehicle Display ***/
+  ul#inv-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-style: solid;
+    border-radius: 20px;
+    padding: 30px;
   }
 }

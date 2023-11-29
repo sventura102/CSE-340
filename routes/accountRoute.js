@@ -16,7 +16,15 @@ router.post('/registration',
     utilities.handleErrors(accountController.registerAccount)
 )
 
+// Accounts Route
+router.get("/accounts", utilities.handleErrors(accountController.buildAccountManagement))
 // Process the login attempt
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+)
 router.post(
     "/login",
     (req, res) => {

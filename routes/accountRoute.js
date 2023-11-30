@@ -17,7 +17,7 @@ router.post('/registration',
 )
 
 // Accounts Route
-router.get("/accounts", utilities.handleErrors(accountController.buildAccountManagement))
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
 // Process the login attempt
 router.post(
   "/login",

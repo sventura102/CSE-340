@@ -1,7 +1,6 @@
 const { json } = require("body-parser")
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
-const jwt = require("jsonwebtoken")
 const invCont = {}
 
 /* ***************************

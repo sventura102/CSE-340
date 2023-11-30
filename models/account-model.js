@@ -1,5 +1,4 @@
 const pool = require("../database/")
-const accountModel = require("../models/account-model")
 
 /* *****************************
 *   Register new account

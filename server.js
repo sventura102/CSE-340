@@ -44,7 +44,6 @@ app.use(function(req, res, next){
   next()
 })
 //
-app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
@@ -71,6 +70,9 @@ app.use(async (req, res, next) => {
 })
 // Cookier parser 
 app.use(cookieParser())
+// Login Process
+app.use(utilities.checkJWTToken)
+
 
 /* ***********************
 * Express Error Handler

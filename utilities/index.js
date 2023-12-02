@@ -45,7 +45,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + 'details"><img src="' + vehicle.inv_image 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -65,6 +65,27 @@ Util.buildClassificationGrid = async function(data){
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
+}
+
+/* **************************************
+* Build the Detail view HTML
+* ************************************ */
+Util.buildDetail = async function(data) {
+  let list
+  if(data.length > 0){
+    list = '<section id="detail-display">'
+    list += '<img src="' + data[0].inv_image + '" alt="Image of ' + data[0].inv_make + ' ' + data[0].inv_model +' on CSE Motors"/>'
+    list += '<article id="details">'
+    list += '<h2>' + data[0].inv_year + ' ' + data[0].inv_make + ' ' + data[0].inv_model + '</h2>'
+    list += '<p><b>Description:</b> ' + data[0].inv_description + '</p>'
+    list += '<p><b>Color:</b> '  + data[0].inv_color + '</p>'
+    list += '<p><b>Mileage:</b> ' + Number(data[0].inv_miles).toLocaleString('en') + '</p>'
+    list += '<p><b>Price:</b> $' + Number(data[0].inv_price).toLocaleString('en') + '</p>'
+    list += '</article>'
+    list += '</section>'
+    return list
+    } else { list ='<p>It appears that this vehicle does not exist. Please view our other vehicles! Thank you.</p>'
+    }
 }
 
 /* ****************************************

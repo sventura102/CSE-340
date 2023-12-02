@@ -18,6 +18,20 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
+
+invCont.buildByDetailId = async function (req, res, next) {
+  const inventory_id = req.params.invId
+  const data = await invModel.getInventoryByDetailId(inventory_id)
+  const list = await utilities.buildDetail(data)
+  let nav = await utilities.getNav()
+  const invName = data[0].inv_make + ' ' + data[0].inv_model
+  res.render("./inventory/detail" , {
+    title: invName,
+    nav,
+    list,
+  })
+  
+}
 /* ***************************
  *  Build account management view
  * ************************** */
@@ -73,4 +87,4 @@ invCont.editInventoryView = async function (req, res, next) {
   })
 }
 
-module.exports = invCont
+module.exports = invCont;

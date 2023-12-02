@@ -1,0 +1,21 @@
+<!--Heading-->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!--Message block for errors-->
+
+<% messages() %>
+<h2>Add to Inventory</h2>
+
+<!-- Add Inventory Form -->
+<div class="newInv-container">
+    <p><i>ALL FIELDS ARE REQUIRED.</i></p>
+    <form id="newInv">
+        <label>Classification</label>
+        <input type="select" required>
+
+    </form>
+</div>

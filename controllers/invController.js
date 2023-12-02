@@ -18,7 +18,9 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
-
+/* ***************************
+ *  Build inventory by detail view
+ * ************************** */
 invCont.buildByDetailId = async function (req, res, next) {
   const inventory_id = req.params.invId
   const data = await invModel.getInventoryByDetailId(inventory_id)
@@ -30,7 +32,14 @@ invCont.buildByDetailId = async function (req, res, next) {
     nav,
     list,
   })
-  
+}
+
+invCont.error505 = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/500" , {
+    title: "500",
+    nav
+  })
 }
 /* ***************************
  *  Build account management view
@@ -44,7 +53,7 @@ invCont.buildManagement = async function (req, res, next) {
   classificationSelect,
   errors: null,
 })
-}
+} 
 
 /* ***************************
  *  Return Inventory by Classification As JSON

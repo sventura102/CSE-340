@@ -10,6 +10,9 @@ router.get("/", utilities.handleErrors(invController.buildManagement))
 //Route to build detail view
 router.get("/detail/:invId", utilities.handleErrors(invController.buildByDetailId))
 
+//Route to Error 500
+router.get("/500", utilities.handleErrors(invController.error505))
+
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId))
 

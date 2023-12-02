@@ -245,6 +245,14 @@ form#register button {
   cursor: pointer;
 }
 
+/********** Detail **********/
+section#detail-display {
+  border-style: solid;
+  border-radius: 15px;
+  border-color: blue;
+  background-color: gray;
+}
+
 
 
 /******* Large View **************/
@@ -288,5 +296,17 @@ form#register button {
     border-style: solid;
     border-radius: 20px;
     padding: 30px;
+  }
+  /*** Detail Box ***/
+  article#details {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  article#details p {
+    margin: 10px;
+  }
+  section#detail-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }

@@ -1,15 +1,15 @@
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 <h2>Login Form</h2>
 <div class="login-container">
-  <form id="login">
+  <form id="login" action="/account/login" method="post">
     <div class="login">
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="account_email" required>
     
       <label for="password"><b>Password</b></label>
-      <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+      <input type="password" name="account_password" id="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
             
-      <button type="login">LOGIN</button> 
+      <button type="submit">LOGIN</button> 
       <div class="signup">
         <p>No account? <a href="/account/registration">Sign Up</a></p>
       </div>

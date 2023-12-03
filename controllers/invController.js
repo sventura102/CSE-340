@@ -33,7 +33,9 @@ invCont.buildByDetailId = async function (req, res, next) {
     list,
   })
 }
-
+/* ***************************
+ *  Build 500 error view
+ * ************************** */
 invCont.error505 = async function (req, res, next) {
   let nav = await utilities.getNav()
   res.render("./inventory/500" , {
@@ -54,6 +56,62 @@ invCont.buildManagement = async function (req, res, next) {
   errors: null,
 })
 } 
+/* ***************************
+ *  Build Add Classification view
+ * ************************** */
+invCont.buildAddClassification = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add New Classification",
+    nav,
+    errors: null,
+  })
+}
+
+/* ***************************
+ *  Build Add Inventory view
+ * ************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-inventory", {
+    title: "Add New Inventory Item",
+    nav,
+    errors: null,
+  })
+}
+
+/* ***************************
+ *  Process New Classification
+ * ************************** */
+invCont.addClassification = async function(req, res, next) {
+  let nav = await utilities.getNav()
+  const {classification_name} = req.body
+  const addClassification = await invModile.addClassification(classification_name)
+  if (addClassification.row[0].classification_name == classification_name) {
+    nav = await utilities.getNav()
+    const classificationSelect = await utilities.buildClassificationList(addClassification.classification_id)
+    req.flash(
+      "notice",
+      `Congratulations, a new classification ${classification_name} has been added to the navigation bar.`
+    )
+    res.status(201).render("./inventory/management", {
+      title: "Vehicle Management",
+      classificationSelect,
+      nav,
+      error: null,
+    }) 
+  } else {
+      req.flash(
+        "notice",
+        `There was an error adding a new Classification. Please try again.`
+      )
+        res.status(501).render("./inventory/add-classification", {
+          title: "Add New Classification",
+          nav,
+          error: null,
+        })
+    }
+  }
 
 /* ***************************
  *  Return Inventory by Classification As JSON

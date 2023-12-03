@@ -13,6 +13,7 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
 // Registration Route
 router.get("/registration", utilities.handleErrors(accountController.buildRegistration))
 
+// Process registration data
 router.post("/registration",
     regValidate.registationRules(),
     regValidate.checkRegData,

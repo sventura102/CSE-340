@@ -33,12 +33,6 @@ app.use(session({
   name: 'sessionId',
   
 }))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-// Cookier parser 
-app.use(cookieParser())
-// Login Process
-app.use(utilities.checkJWTToken)
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -46,6 +40,16 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+// Body Parser MiddleWare
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+// Cookier parser 
+app.use(cookieParser())
+// Login Process
+app.use(utilities.checkJWTToken)
+
+
 
 /* ***********************
  * View Engine and Templates
@@ -63,9 +67,9 @@ app.use(require("./routes/static"))
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", utilities.handleErrors(inventoryRoute))
 // Account routes
-app.use("/account", accountRoute)
+app.use("/account", utilities.handleErrors(accountRoute))
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})

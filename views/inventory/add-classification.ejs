@@ -1,3 +1,5 @@
+<link href="/css/styles.css" rel="stylesheet" type="text/css">
+
 <!--Heading-->
 <% if (title) { %>
     <h1><%= title %></h1>
@@ -9,15 +11,13 @@
 
 <% messages() %>
 
-<h2>Add New Classification</h2>
-
 <!-- Add Classification Form -->
 <div class="newClass-container">
     <p><i>FIELD IS REQUIRED.</i></p>
     <form id="newClass">
         <p>Must be Alphabetic Characters Only</p>
         <label for="newClassName"><b>Classification Name</b></label>
-        <input type="text" name="class_name" id="class_name" required pattern="^[A-Za-z]{1,8}$" value="<%= locals.classification_name %>">
+        <input type="text" name="class_name" id="classification_name" required pattern="^[A-Za-z]{1,8}$" value="<%= locals.classification_name %>">
         <button type="submit">Add Classification</button>
     </form>
 </div>

@@ -252,7 +252,21 @@ section#detail-display {
   border-color: blue;
   background-color: gray;
 }
+/******* Add Classification Form ***/
+div.newClass-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: blue;
+  background-color: gray;
+}
 
+div.newClass-container p {
+  color: darkred;
+  margin: 10px;
+  font-weight: bold;
+}
 
 
 /******* Large View **************/

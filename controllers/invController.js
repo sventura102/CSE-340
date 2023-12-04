@@ -44,7 +44,7 @@ invCont.error505 = async function (req, res, next) {
   })
 }
 /* ***************************
- *  Build account management view
+ *  Build management view
  * ************************** */
 invCont.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -72,10 +72,12 @@ invCont.buildAddClassification = async function (req, res, next) {
  *  Build Add Inventory view
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
+  let invSelect = await utilities.buildClassificationList()
   let nav = await utilities.getNav()
   res.render("./inventory/add-inventory", {
     title: "Add New Inventory Item",
     nav,
+    invSelect,
     errors: null,
   })
 }
@@ -93,7 +95,7 @@ invCont.addClassification = async function(req, res, next) {
       "notice",
       `Congratulations, this classification has been added to the navigation bar. Take a look!`
     )
-    res.status(201).render("inv/addClassification", {
+    res.status(201).render("./inventory/management", {
       title: "Add Classification",
       nav,
     }) 
@@ -102,7 +104,7 @@ invCont.addClassification = async function(req, res, next) {
         "notice",
         `This category may already exist or does not meet the requirement. Please try again`
       )
-      res.status(501).render("inv/newClassification", {
+      res.status(501).render("./inventory/add-classification", {
         title: "Add Classification",
         nav
       })
@@ -124,8 +126,8 @@ invCont.addVehicle = async function(req, res, next) {
     inv_thumbnail,
     inv_price,
     inv_year,
-    invMiles,
-    invColor} = req.body
+    inv_miles,
+    inv_color} = req.body
 
   const vehicleResult = await invModel.addVehicle(
     classification_id,
@@ -136,12 +138,12 @@ invCont.addVehicle = async function(req, res, next) {
     inv_thumbnail,
     inv_price,
     inv_year,
-    invMiles, 
-    invColor)
+    inv_miles, 
+    inv_color)
 
   if (vehicleResult) {
     req.Flash("notice", `Congratulations, your ${inv_year} ${inv_make} ${inv_model} has been added to your inventory!`)
-    res.redirect("/inv/")
+    res.redirect("/inv")
   } else {
     req.flash("notice", `Sorry, there was an error adding that vehicle.`)
     res.render("./inventory/add-inventory", {

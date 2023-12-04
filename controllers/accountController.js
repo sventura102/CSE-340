@@ -16,19 +16,19 @@ async function buildLogin(req, res, next) {
     })
   }
 
-   /* ****************************************
+/* ****************************************
 *  Deliver account management view
 * *************************************** */
 async function buildAccountManagement (req, res, next) {
   let nav = await utilities.getNav()
-  res.render("./account/accounts", {
+  res.render("account/management", {
     title: "Account Management",
     nav,
     error: null,
   })
 }
 
-  /* ****************************************
+/* ****************************************
 *  Deliver registration view
 * *************************************** */
 async function buildRegistration(req, res, next) {
@@ -64,7 +64,7 @@ try {
     account_firstname,
     account_lastname,
     account_email,
-    account_password
+    hashedPassword
   )
   
   if (regResult) {

@@ -1,20 +1,11 @@
+<link href="/css/styles.css" rel="stylesheet" type="text/css">
 <!-- The content Heading -->
-
 <% if (title) { %>
     <h1><%= title %></h1>
     <% } else {
       res.redirect('/')
     } %>
 
-<!-- A Message Block to display potential error messages -->
-<%- messages() %>
-<% if (errors) { %>
-  <ul class="notice">
- <% errors.array().forEach(error => { %>
-   <li><%= error.msg %></li>
-<%  }) %>
- </ul>
-<% } %>
 <ul>
     <li><a href="/inv/newClassification/" title="Add a new vehicle classification">Add New Classification</a></li>
     <li><a href="/inv/newVehicle/" title="Add a new vehicle">Add New Vehicle</a></li>

@@ -27,6 +27,26 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+/* *******************************************
+ * Constructs the classification dropdown list
+ ********************************************* */
+Util.buildClassificationList = async function (req, res, next) {
+  let data = await invModel.getClassifications() 
+  let invSelect = '<select name="classification_id" id="invClass" required>'
+  if (req === undefined) {
+    invSelect += '<option hidden disabled selected value> -- select a classification</option>'
+  }
+  for (let i = 0; i < data.rowCount; i++) {
+    if (i == req){
+      invSelect += '<option value=' + data.rows[i].classification_id + ' selected>' + data.rows[i].classification_name + '</option>'
+    } else {
+      invSelect += '<option value=' + data.rows[i].classification_id + '>' + data.rows[i].classification_name + '</option>'
+    }
+  }
+  invSelect += "</select>"
+  return invSelect
+} 
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
@@ -66,6 +86,8 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+
 
 /* **************************************
 * Build the Detail view HTML

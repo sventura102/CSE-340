@@ -86,32 +86,72 @@ invCont.buildAddInventory = async function (req, res, next) {
 invCont.addClassification = async function(req, res, next) {
   let nav = await utilities.getNav()
   const {classification_name} = req.body
-  const addClassification = await invModile.addClassification(classification_name)
-  if (addClassification.row[0].classification_name == classification_name) {
-    nav = await utilities.getNav()
-    const classificationSelect = await utilities.buildClassificationList(addClassification.classification_id)
+  const addClassification = invModel.addClassification(classification_name)
+
+  if (addClassification) {
     req.flash(
       "notice",
-      `Congratulations, a new classification ${classification_name} has been added to the navigation bar.`
+      `Congratulations, this classification has been added to the navigation bar. Take a look!`
     )
-    res.status(201).render("./inventory/management", {
-      title: "Vehicle Management",
-      classificationSelect,
+    res.status(201).render("inv/addClassification", {
+      title: "Add Classification",
       nav,
-      error: null,
     }) 
   } else {
       req.flash(
         "notice",
-        `There was an error adding a new Classification. Please try again.`
+        `This category may already exist or does not meet the requirement. Please try again`
       )
-        res.status(501).render("./inventory/add-classification", {
-          title: "Add New Classification",
-          nav,
-          error: null,
-        })
+      res.status(501).render("inv/newClassification", {
+        title: "Add Classification",
+        nav
+      })
     }
+ }
+
+ /* ***************************
+ *  Process New Vehicle
+ * ************************** */
+invCont.addVehicle = async function(req, res, next) {
+  let nav = await utilities.getNav()
+  let invSelect = await utilities.buildClassificationList(classification_id)
+  const {
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    invMiles,
+    invColor} = req.body
+
+  const vehicleResult = await invModel.addVehicle(
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    invMiles, 
+    invColor)
+
+  if (vehicleResult) {
+    req.Flash("notice", `Congratulations, your ${inv_year} ${inv_make} ${inv_model} has been added to your inventory!`)
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", `Sorry, there was an error adding that vehicle.`)
+    res.render("./inventory/add-inventory", {
+      title: "Add New Vehicle",
+      nav,
+      invSelect,
+      errors: null,
+    })
   }
+}
 
 /* ***************************
  *  Return Inventory by Classification As JSON

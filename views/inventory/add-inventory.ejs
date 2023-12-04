@@ -11,15 +11,37 @@
 
 <% messages() %>
 
-<h2>Add to Inventory</h2>
-
 <!-- Add Inventory Form -->
 <div class="newInv-container">
     <p><i>ALL FIELDS ARE REQUIRED.</i></p>
     <form id="newInv">
         <label>Classification: </label>
-        <input type="text" name="classification_name" id="newClassification" 
-        required pattern="^[A-Za-z]{1-8}$" value="<% locals.classification_name %>">
+        <select>
+            <option value="1">Custom</option>
+            <option value="2">Sport</option>
+            <option value="3">SUV</option>
+            <option value="4">Truck</option>
+            <option value="5">Sedan</option>
+        </select>
+        <label>Vehicle Make:</label>
+        <input type="text" name="inv_make" id="inv_make" min="3" placeholder="Min of 3 characters">
+        <label>Vehicle Model:</label>
+        <input type="text" name="inv_model" id="inv_model" min="3" placeholder="Min of 3 characters">
+        <label>Description: </label>
+        <textarea input type="text" name="inv_description" id="inv_description" rows="10" col="20"></textarea>
+        <label>Image Path: </label>
+        <input type="text" name="inv_image" id="inv_image">
+        <label>Thumbnail Path: </label>
+        <input type="text" name="inv_thumbnail" id="inv_thumbnail">
+        <label>Price: </label>
+        <input type="number"name="inv_price" id="inv_price">
+        <label>Year: </label>
+        <input type="number" min="4"name="inv_year" id="inv_year" pattern="[0-9]{4}" placeholder="4-digit year">
+        <label>Miles: </label>
+        <input type="number" name="inv_miles" id="inv_miles" pattern="[0-9]"" placeholder="digits only">
+        <label>Color: </label>
+        <input type="text" name="inv_color" id="inv_color">
+
         <button id="addClassName" type="submit">Add Classification</button>
     </form>
 </div>

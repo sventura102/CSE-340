@@ -27,6 +27,12 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 
 // Get info and add new Classification
 router.post (
-    "/addNewClassification",
-    utilities.handleErrors(invController.addClassification))
+    "/newClassification",
+    utilities.handleErrors(invController.addClassification)
+    )
+
+router.post (
+    "/newVehicle",
+    utilities.handleErrors(invController.addVehicle)
+)
 module.exports = router;

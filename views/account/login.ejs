@@ -1,14 +1,24 @@
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 
+<!-- A Message Block to display potential error messages -->
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <!--Login Form-->
 <h2>Login Form</h2>
 <div class="login-container">
   <form id="login" action="/account/login" method="post">
     <div class="login">
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="account_email" required>
+      <label><b>Email</b></label>
+      <input type="email" placeholder="Enter Email" name="account_email" required value="<%= locals.account_email %>">
     
-      <label for="password"><b>Password</b></label>
+      <label><b>Password</b></label>
       <input type="password" name="account_password" id="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
             
       <button type="submit">LOGIN</button> 

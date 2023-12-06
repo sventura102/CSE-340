@@ -8,8 +8,14 @@
     } %>
 
 <!--Message block for errors-->
-
-<% messages() %>
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
 <!--Inventory Display-->
 <%- grid %> 

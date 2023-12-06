@@ -16,6 +16,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    errors: null
   })
 }
 /* ***************************
@@ -31,6 +32,7 @@ invCont.buildByDetailId = async function (req, res, next) {
     title: invName,
     nav,
     list,
+    errors: null
   })
 }
 /* ***************************
@@ -40,7 +42,8 @@ invCont.error505 = async function (req, res, next) {
   let nav = await utilities.getNav()
   res.render("./inventory/500" , {
     title: "500",
-    nav
+    nav,
+    errors: null,
   })
 }
 /* ***************************
@@ -89,6 +92,7 @@ invCont.addClassification = async function(req, res, next) {
   let nav = await utilities.getNav()
   const {classification_name} = req.body
   const addClassification = invModel.addClassification(classification_name)
+  const classificationSelect = await utilities.buildClassificationList()
 
   if (addClassification) {
     req.flash(
@@ -97,6 +101,7 @@ invCont.addClassification = async function(req, res, next) {
     )
     res.status(201).render("./inventory/management", {
       title: "Add Classification",
+      classificationSelect,
       nav,
     }) 
   } else {
@@ -116,34 +121,15 @@ invCont.addClassification = async function(req, res, next) {
  * ************************** */
 invCont.addVehicle = async function(req, res, next) {
   let nav = await utilities.getNav()
+  const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body
   let invSelect = await utilities.buildClassificationList(classification_id)
-  const {
-    classification_id,
-    inv_make,
-    inv_model,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_year,
-    inv_miles,
-    inv_color} = req.body
+  
 
-  const vehicleResult = await invModel.addVehicle(
-    classification_id,
-    inv_make,
-    inv_model,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_year,
-    inv_miles, 
-    inv_color)
+  const vehicleData = await invModel.addVehicle(classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color)
 
-  if (vehicleResult) {
+  if (vehicleData) {
     req.Flash("notice", `Congratulations, your ${inv_year} ${inv_make} ${inv_model} has been added to your inventory!`)
-    res.redirect("/inv")
+    res.redirect("/inv/")
   } else {
     req.flash("notice", `Sorry, there was an error adding that vehicle.`)
     res.render("./inventory/add-inventory", {

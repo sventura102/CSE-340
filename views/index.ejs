@@ -1,11 +1,19 @@
-<h2>Welcome to CSE Motors</h1>
+<h2>Welcome to CSE Motors</h2>
 
-<%-  messages() %>
+<!--Message block for errors-->
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
 <div id="DMC-Delorean">
     
     <ul>
-        <h3>DMC Delorean</h3>
+        <li>DMC Delorean</li>
         <li>3 Cup holders</li>
         <li>Superman doors</li>
         <li>Fuzzy dice!</li>
@@ -30,19 +38,19 @@
         <h2>DMC Delorean Upgrades</h2>
         <div id="upgrade-boxes">
             <div id="flux">
-                <img src="../images/upgrades/flux-cap.png">
+                <img src="../images/upgrades/flux-cap.png" alt="A digital image of a flux cap">
                 <a>Flux Capacitor</a>
             </div>
             <div id="decals">
-                <img src="../images/upgrades/flame.jpg">
+                <img src="../images/upgrades/flame.jpg" alt="A digital image of a flame decal sticker">
                 <a>Flame Decals</a>
             </div>
             <div id="stickers">
-                <img src="../images/upgrades/bumper_sticker.jpg">
+                <img src="../images/upgrades/bumper_sticker.jpg" alt="A digital image of a bumper sticker">
                 <a>Bumper Stickers</a>
             </div>
             <div id="caps">
-                <img src="../images/upgrades/hub-cap.jpg">
+                <img src="../images/upgrades/hub-cap.jpg" alt="A digital image of a hub cap">
                 <a>Hub Caps</a>
             </div>
         </div>

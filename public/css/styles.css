@@ -15,7 +15,7 @@ h2 {
     font-weight: bold;
   }
 
-  div#tools a {
+  #tools a {
     text-decoration: none;
     color: black;
   }
@@ -23,6 +23,18 @@ h2 {
     background: white;
   
   }
+
+  /*** Input Styling ***/
+  input:required:invalid, input:focus:invalid {
+    background-image: url(/images/invalid.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+   }
+  input:required:valid {
+    background-image: url(/images/valid.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+    }
   /************** Header ************/
   header#top-header {
     display: grid;
@@ -71,7 +83,7 @@ h2 {
   }
 
   div#DMC-Delorean h3 {
-    font-style: bold;
+    font-weight: bold;
     color: blue;
   }
   div#DMC-Delorean ul{
@@ -125,7 +137,7 @@ div#flux, div#decals, div#stickers, div#caps {
 
 div#flux img , div#decals img, div#stickers img, div#caps img {
   align-items: center;
-  size: 50%;
+  resize: 50%;
 }
 
 div#flux a , div#decals a, div#stickers a, div#caps a{

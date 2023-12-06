@@ -1,5 +1,13 @@
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
-
+<!--Message block for errors-->
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 <h2>Registration Form</h2>
 <div class="register-container">
     <form id ="register" action="/account/registration" method="post">

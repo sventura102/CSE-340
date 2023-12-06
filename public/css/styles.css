@@ -15,7 +15,7 @@ h2 {
     font-weight: bold;
   }
 
-  div#tools a {
+  #tools a {
     text-decoration: none;
     color: black;
   }
@@ -71,7 +71,7 @@ h2 {
   }
 
   div#DMC-Delorean h3 {
-    font-style: bold;
+    font-weight: bold;
     color: blue;
   }
   div#DMC-Delorean ul{
@@ -125,7 +125,7 @@ div#flux, div#decals, div#stickers, div#caps {
 
 div#flux img , div#decals img, div#stickers img, div#caps img {
   align-items: center;
-  size: 50%;
+  resize: 50%;
 }
 
 div#flux a , div#decals a, div#stickers a, div#caps a{

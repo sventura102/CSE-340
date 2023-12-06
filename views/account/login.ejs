@@ -1,5 +1,15 @@
 <link href="../css/styles.css" rel="stylesheet" type="text/css">
 
+<!-- A Message Block to display potential error messages -->
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <!--Login Form-->
 <h2>Login Form</h2>
 <div class="login-container">

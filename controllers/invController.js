@@ -16,6 +16,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    errors: null
   })
 }
 /* ***************************
@@ -31,6 +32,7 @@ invCont.buildByDetailId = async function (req, res, next) {
     title: invName,
     nav,
     list,
+    errors: null
   })
 }
 /* ***************************
@@ -40,7 +42,8 @@ invCont.error505 = async function (req, res, next) {
   let nav = await utilities.getNav()
   res.render("./inventory/500" , {
     title: "500",
-    nav
+    nav,
+    errors: null,
   })
 }
 /* ***************************
@@ -89,6 +92,7 @@ invCont.addClassification = async function(req, res, next) {
   let nav = await utilities.getNav()
   const {classification_name} = req.body
   const addClassification = invModel.addClassification(classification_name)
+  const classificationSelect = await utilities.buildClassificationList()
 
   if (addClassification) {
     req.flash(
@@ -97,6 +101,7 @@ invCont.addClassification = async function(req, res, next) {
     )
     res.status(201).render("./inventory/management", {
       title: "Add Classification",
+      classificationSelect,
       nav,
     }) 
   } else {

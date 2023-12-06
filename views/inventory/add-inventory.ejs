@@ -26,19 +26,19 @@
         <label>Vehicle Make:</label>
         <input type="text" name="inv_make" id="inv_make" min="3" placeholder="Min of 3 characters" required value="<%= locals.inv_make %>">
         <label>Vehicle Model:</label>
-        <input type="text" name="inv_model" id="inv_model" min="3" placeholder="Min of 3 characters"required value="<%= locals.inv_model %>">
+        <input type="text" name="inv_model" id="inv_model" minlength="3" placeholder="Min of 3 characters" required value="<%= locals.inv_model %>">
         <label>Description: </label>
-        <textarea input type="text" name="inv_description" id="inv_description" rows="10" col="20" required value="<%= locals.inv_description %>"></textarea>
+        <textarea name="inv_description" id="inv_description" rows="5" required="<%= locals.inv_description %>"></textarea>
         <label>Image Path: </label>
         <input type="text" name="inv_image" id="inv_image" required value="<%= locals.inv_image %>">
         <label>Thumbnail Path: </label>
         <input type="text" name="inv_thumbnail" id="inv_thumbnail" required value="<%= locals.inv_thumbnail %>">
         <label>Price: </label>
-        <input type="number"name="inv_price" id="inv_price" value="<%= locals.inv_price %>">
+        <input type="number" name="inv_price" id="inv_price" required value="<%= locals.inv_price %>">
         <label>Year: </label>
-        <input type="number" min="4"name="inv_year" id="inv_year" pattern="[0-9]{4}" placeholder="4-digit year" value="<%= locals.inv_year %>">
+        <input type="number" min="4" name="inv_year" id="inv_year" placeholder="4-digit year" required value="<%= locals.inv_year %>">
         <label>Miles: </label>
-        <input type="number" name="inv_miles" id="inv_miles" pattern="[0-9]"" placeholder="digits only" value="<%= locals.inv_miles %>">
+        <input type="number" name="inv_miles" id="inv_miles" placeholder="digits only" required value="<%= locals.inv_miles %>">
         <label>Color: </label>
         <input type="text" name="inv_color" id="inv_color" required value="<%= locals.inv_color %>">
 

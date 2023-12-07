@@ -23,7 +23,10 @@ router.get("/500", utilities.handleErrors(invController.error505));
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
 //Router to get inventory in JSON format
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Router to build update view for inventory
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
 
 router.post("/newClassification", utilities.handleErrors(invController.addClassification))
 

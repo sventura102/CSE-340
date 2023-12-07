@@ -20,9 +20,9 @@
 <!-- Add Classification Form -->
 <div class="newClass-container">
     <p><i>FIELD IS REQUIRED.</i></p>
-    <form id="newClass" action="/inv/newClassification" method="post">
+    <form id="newClass" action="/inv/newClassification/" method="post">
         <p>Must be Alphabetic Characters Only</p>
-        <label for="newClassName"><b>Classification Name</b></label>
+        <label for="classification_name"><b>Classification Name</b></label>
         <input type="text" name="classification_name" id="classification_name" required pattern="^[A-Za-z]{1,8}$" value="<%= locals.classification_name %>">
         <button type="submit">Add Classification</button>
     </form>

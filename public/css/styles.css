@@ -118,9 +118,12 @@ h2 {
     text-align: center;
   }
   footer p {
-    color:white;
+    color:#C9C9C9;
     font-weight: 10;
     font-size: medium;
+  }
+  footer a {
+    color: #FFFFFF;
   }
 
 /******* Upgrades ***********/
@@ -159,7 +162,7 @@ div#upgrade-boxes {
 #inv-display {
   display: grid;
   grid-template-columns: 1fr;
-  background-color: gray;
+  background-color: #575757;
   border-style: solid;
   border-radius: 20px;
 }
@@ -271,7 +274,7 @@ section#detail-display {
   border-style: solid;
   border-radius: 15px;
   border-color: blue;
-  background-color: gray;
+  background-color: #575757;
 }
 /******* Add Classification Form ***/
 div.newClass-container {
@@ -280,7 +283,11 @@ div.newClass-container {
   border-style: solid;
   border-radius: 15px;
   border-color: blue;
-  background-color: gray;
+  background-color: #E8E8E8;
+}
+
+div.newClass-container label {
+  color: #141414;
 }
 
 div.newClass-container p {
@@ -294,7 +301,7 @@ div.newInv-container {
   border-style: solid;
   border-radius: 15px;
   border-color: blue;
-  background-color: gray;
+  background-color: #E8E8E8;
 }
 
 div.newInv-container p {
@@ -309,6 +316,10 @@ form#newInv {
   margin: 10px;
   width: auto;
   text-align: center;
+}
+
+form#newInv label {
+  color: #000000;
 }
 
 /******* Large View **************/

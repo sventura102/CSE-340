@@ -1,4 +1,3 @@
-const { json } = require("body-parser")
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 const invCont = {}
@@ -100,9 +99,10 @@ invCont.addClassification = async function(req, res, next) {
       `Congratulations, this classification has been added to the navigation bar. Take a look!`
     )
     res.status(201).render("./inventory/management", {
-      title: "Add Classification",
+      title: "Vehicle Management",
       classificationSelect,
       nav,
+      errors:null,
     }) 
   } else {
       req.flash(
@@ -110,8 +110,9 @@ invCont.addClassification = async function(req, res, next) {
         `This category may already exist or does not meet the requirement. Please try again`
       )
       res.status(501).render("./inventory/add-classification", {
-        title: "Add Classification",
-        nav
+        title: "Add New Classification",
+        nav,
+        errors:null,
       })
     }
  }
@@ -123,7 +124,6 @@ invCont.addVehicle = async function(req, res, next) {
   let nav = await utilities.getNav()
   const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body
   let invSelect = await utilities.buildClassificationList(classification_id)
-  
 
   const vehicleData = await invModel.addVehicle(classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color)
 
@@ -153,7 +153,6 @@ invCont.getInventoryJSON = async (req, res, next) => {
     next(new Error("No data returned"))
   }
 }
-
 /* ***************************
  *  Build edit inventory view
  * ************************** */

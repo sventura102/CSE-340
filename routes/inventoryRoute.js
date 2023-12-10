@@ -36,10 +36,10 @@ router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInvento
 router.post("/newClassification", validate.classificationRules(), validate.checkClassData, utilities.handleErrors(invController.addClassification))
 
 //Router to post Vehicle to Inv in Sql and add when Classification is selected in Nav or dropdown view
-router.post("/newVehicle", validate.inventoryRules(), validate.checkInvData, utilities.handleErrors(invController.addVehicle))
+router.post("/newVehicle", utilities.handleErrors(invController.addVehicle))
 
 // Router to post/update new Vehicle Data
-router.post("/edit", validate.inventoryRules(), validate.checkUpdateData, utilities.handleErrors(invController.updateInventory))
+router.post("/edit", utilities.handleErrors(invController.updateInventory))
 
 // Router to delete Vehicle Data 
 router.post("/delete", utilities.handleErrors(invController.deleteInventory))

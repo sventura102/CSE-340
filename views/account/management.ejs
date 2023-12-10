@@ -16,4 +16,10 @@
  </ul>
 <% } %>
 
-<h2> You're logged in !</h2>
+<h2> Welcome <%= locals.accountData.account_firstname %>, You're logged in !</h2>
+<p>Update Account Information <a href="/account/update">Here</a></p>
+<% if(locals.accountData.account_type == "Employee" || locals.accountData.account_type == "Admin") {%>
+  <p>Add/Update Inventory <a href="/inv">Here</a></p>
+<% } else { %>
+  <p>Click on our different car types to view our selection!</p>
+<% } %>

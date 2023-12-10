@@ -113,4 +113,76 @@ async function accountLogin(req, res) {
    return new Error('Access Forbidden')
   }
  }
-  module.exports = { buildLogin, buildRegistration, accountLogin, registerAccount, buildAccountManagement }
+
+ async function buildUpdateView(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/update", {
+    title: "Update Account Information",
+    nav,
+    errors: null,
+  })
+ }
+
+ async function updateAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  const {account_id, account_firstname, account_lastname, account_email} = req.body
+  const update = await accountModel.updateAccount(
+  account_id, account_firstname, account_lastname, account_email)
+
+  if (update) {
+    req.flash("notice", `${account_firstname}, your account has been updated!`)
+    res.redirect("/account")
+  } else {
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("./account/update", {
+      title: "Update Account Information",
+      nav,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+      errors: null,
+  })
+ }
+}
+
+async function updatePassword(req, res, next) {
+  let nav = await utilities.getNav()
+  const {account_id, account_password} = req.body
+
+  let hashedPassword
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing the change.')
+    res.status(501).render("./account/update", {
+      title: "Update Account Information",
+      nav,
+      account_id,
+      account_password,
+      errors: null,
+    })
+  } 
+  
+  const update = accountModel.updatePassword(
+    account_id, hashedPassword)
+
+  if(update) {
+    req.flash("notice", `Your password has been updated!`)
+    res.redirect("/account")
+  } else {
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("./account/update", {
+      title: "Update Account Information",
+      nav,
+      errors: null,
+  })
+  }
+}
+
+  async function accountLogout(req, res) {
+    res.clearCookie('jwt')
+    res.redirect("/")
+  }
+  module.exports = { buildLogin, buildRegistration, accountLogin, registerAccount, buildAccountManagement, buildUpdateView, updateAccount, updatePassword, accountLogout}

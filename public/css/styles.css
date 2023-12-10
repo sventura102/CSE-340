@@ -322,6 +322,30 @@ form#newInv label {
   color: #000000;
 }
 
+/*** Update Account/Password Form ***/
+form#account-update, form#password-update {
+  background-color: #182740;
+  max-width: 450px;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+}
+
+form#account-update h2, form#password-update h2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+form#account-update {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+form#password-update span{
+  padding-top: 5px;
+}
+
 /******* Large View **************/
 @media (min-width: 600px ){
   html {
@@ -376,5 +400,7 @@ form#newInv label {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-
+  form#account-update, form#password-update{
+    min-width: 300px;
+  }
 }

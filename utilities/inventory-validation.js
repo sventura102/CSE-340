@@ -63,11 +63,11 @@ validate.inventoryRules = () => {
             .withMessage("Please insert a description that meets the requirements."),
         body("inv_image")
             .trim()
-            .isLength({min: 1, max: 30})
+            .isLength({min: 1})
             .withMessage("Please insert an image that meets the requirements."),
         body("inv_thumbnail")
             .trim()
-            .isLength({min: 1, max: 30})
+            .isLength({min: 1})
             .withMessage("Please insert a thumbnail that meets the requirements."),
         body("inv_price")
             .trim()
@@ -83,21 +83,62 @@ validate.inventoryRules = () => {
  * ***************************** */
 validate.checkInvData = async (req, res, next) => {
     const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color} = req.body
+    
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
+        let invSelect = await utilities.buildClassificationList(classification_id)
         res.render("./inventory/add-inventory", {
             errors, 
+            invSelect,
             title: "Add New Vehicle",
             nav,
             classification_id, 
-            inv_make, inv_model, 
-            inv_description, inv_image, 
-            inv_thumbnail, inv_price, 
-            inv_year, inv_miles, 
+            inv_make,
+            inv_model, 
+            inv_description,
+            inv_image, 
+            inv_thumbnail,
+            inv_price, 
+            inv_year,
+            inv_miles, 
             inv_color,
         })
     }
 }
+
+  /* ******************************
+ * Check data and return errors or continue to add update vehicle in inventory
+ * ***************************** */
+
+validate.checkUpdateData = async (req, res, next) => {
+    const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color} = req.body
+    let errors = []
+    errors = validationResult(req)
+    if(!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let invSelect = await utilities.buildClassificationList()
+
+        res.render("inventory/edit-inventory", {
+            errors,
+            invSelect,
+            title: "Edit " + inv_make + " " + inv_model,
+            nav,
+            classification_id,
+            inv_make,
+            inv_model,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_year,
+            inv_miles,
+            inv_color,
+        })
+        return
+    }
+    next()
+}
+
 module.exports = validate;

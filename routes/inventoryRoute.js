@@ -29,8 +29,19 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Router to build update view for inventory
 router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
 
+// Router to build delete view for inventory 
+router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInventoryView))
+
+//Router to post Classification to SQL and add to nav
 router.post("/newClassification", validate.classificationRules(), validate.checkClassData, utilities.handleErrors(invController.addClassification))
 
-router.post("/newVehicle", validate.inventoryRules(), validate.checkInvData, utilities.handleErrors(invController.addVehicle))
+//Router to post Vehicle to Inv in Sql and add when Classification is selected in Nav or dropdown view
+router.post("/newVehicle", utilities.handleErrors(invController.addVehicle))
+
+// Router to post/update new Vehicle Data
+router.post("/edit", utilities.handleErrors(invController.updateInventory))
+
+// Router to delete Vehicle Data 
+router.post("/delete", utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;

@@ -181,8 +181,38 @@ async function updatePassword(req, res, next) {
   }
 }
 
-  async function accountLogout(req, res) {
+async function accountLogout(req, res) {
     res.clearCookie('jwt')
     res.redirect("/")
   }
-  module.exports = { buildLogin, buildRegistration, accountLogin, registerAccount, buildAccountManagement, buildUpdateView, updateAccount, updatePassword, accountLogout}
+
+async function accountDeleteView(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./account/delete", {
+    title: "Delete Account",
+    nav,
+    errors: null,
+  })
+}
+
+async function accountDelete(req, res, next) {
+  let nav = await utilities.getNav()
+  const {account_id} = req.body
+  const deleteAccount = await accountModel.deleteAccount(account_id)
+
+  if(deleteAccount) {
+    req.flash("notice", `Your account has been deleted.`)
+    res.redirect("./account/login/")
+  } else {
+    req.flash("notice", `There has been an error. Please contact tech support.`)
+    res.status(501).render("./account/delete") , {
+      nav,
+      errors: null,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    }
+  }
+}
+  module.exports = { buildLogin, buildRegistration, accountLogin, registerAccount, buildAccountManagement, buildUpdateView, updateAccount, updatePassword, accountLogout, accountDeleteView, accountDelete}

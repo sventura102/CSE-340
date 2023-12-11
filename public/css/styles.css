@@ -346,6 +346,33 @@ form#password-update span{
   padding-top: 5px;
 }
 
+form#deleteAccount {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: #182740;
+  max-width: 450px;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+}
+form#deleteAccount p {
+  color: white;
+}
+button#deleteAccount {
+  background-color: pink;
+}
+button#deleteAccount:hover {
+  background-color: red;
+}
+
+button#deleteAccount a {
+  color: white;
+  text-decoration: none;
+}
+
+button#deleteAccount a:visited {
+  color: white;
+}
 /******* Large View **************/
 @media (min-width: 600px ){
   html {
